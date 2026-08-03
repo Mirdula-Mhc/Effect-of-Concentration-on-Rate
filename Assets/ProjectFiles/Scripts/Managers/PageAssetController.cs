@@ -1,35 +1,29 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PageAssetController : MonoBehaviour
 {
     [System.Serializable]
-    public class PageAssetItem
+    public class PageAssetGroup
     {
-        public GameObject asset;
+        [Tooltip("The page index this group belongs to (0-based, matches PageNavigationController's currentIndex)")]
+        public int pageIndex;
 
-        [Tooltip("If true, this asset will be enabled only the first time this page is reached")]
-        public bool enableOnce = false;
-
-        [HideInInspector] public bool hasBeenActivated = false;
+        [Tooltip("All assets that should be active on this page")]
+        public List<GameObject> assets = new List<GameObject>();
     }
 
-    [System.Serializable]
-    public class PageAssets
-    {
-        [Header("Page Info")]
-        [Tooltip("Name of the page (for easier identification in Inspector)")]
-        public string pageName;
+    [Header("Assign each group of assets directly to the page index it belongs to")]
+    [SerializeField] private List<PageAssetGroup> pageAssets = new List<PageAssetGroup>();
 
-        [Tooltip("Assets configuration for this page")]
-        public List<PageAssetItem> assets = new List<PageAssetItem>();
-    }
-
-    [Header("All Page Assets (Assign every asset once here)")]
-    [SerializeField] private List<GameObject> allAssets = new List<GameObject>();
-
-    [Header("Per Page Asset Configuration (Index = Page Index)")]
-    [SerializeField] private List<PageAssets> pageAssets = new List<PageAssets>();
+    // Derived automatically from pageAssets - no manual syncing needed
+    private List<GameObject> AllAssets => pageAssets
+        .Where(group => group != null && group.assets != null)
+        .SelectMany(group => group.assets)
+        .Where(asset => asset != null)
+        .Distinct()
+        .ToList();
 
     private void OnEnable()
     {
@@ -43,39 +37,27 @@ public class PageAssetController : MonoBehaviour
 
     private void HandlePageChanged(int pageIndex)
     {
-        if (pageIndex < 0 || pageIndex >= pageAssets.Count)
-            return;
-
         DisableAllAssets();
 
-        PageAssets currentPage = pageAssets[pageIndex];
-
-        if (currentPage == null || currentPage.assets == null)
-            return;
-
-        foreach (var item in currentPage.assets)
+        foreach (var group in pageAssets)
         {
-            if (item == null || item.asset == null)
+            if (group == null || group.assets == null)
                 continue;
 
-            if (item.enableOnce)
-            {
-                if (item.hasBeenActivated)
-                    continue;
+            if (group.pageIndex != pageIndex)
+                continue; // not this page - stays disabled
 
-                item.asset.SetActive(true);
-                item.hasBeenActivated = true;
-            }
-            else
+            foreach (var asset in group.assets)
             {
-                item.asset.SetActive(true);
+                if (asset != null)
+                    asset.SetActive(true);
             }
         }
     }
 
     private void DisableAllAssets()
     {
-        foreach (GameObject obj in allAssets)
+        foreach (GameObject obj in AllAssets)
         {
             if (obj != null)
                 obj.SetActive(false);

@@ -357,14 +357,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ce4cb05f3d018e4c8e44e50af8b3f3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PageAssetController
-  allAssets:
-  - {fileID: 0}
   pageAssets:
-  - pageName: 
-    assets:
-    - asset: {fileID: 0}
-      enableOnce: 0
-      hasBeenActivated: 0
+  - pageIndex: 0
+    assets: []
 --- !u!4 &218050258
 Transform:
   m_ObjectHideFlags: 0
@@ -1364,15 +1359,248 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIPromptController
   pages:
-  - pageName: 
-    pageText: 
-    showDialogBox: 0
+  - pageName: Page 1
+    pageText: In this experiment, we shall study the effect of variation in the concentration
+      of iodide ions on the rate of reaction of iodide ions with hydrogen peroxide
+      at room temperature.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 2
+    pageText: Tap on each of the labels to understand its role in the experiment.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 3
+    pageText: To begin with, we shall add 5 mL, 10 mL, 15 mL and 20 mL of 0.1 M KI
+      to each labelled conical flask.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 4
+    pageText: Drag the sliders to add 5 mL, 10 mL, 15 mL and 20 mL of 0.1 M KI to
+      the flasks 'A', 'B', 'C' and 'D', respectively.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 5
+    pageText: Now, we will add 10 mL of 2.5 M H2SO4 to each flask.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 6
+    pageText: Drag all the sliders to add 10 mL H2SO4 to each flask.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 7
+    pageText: Let us now bring the solution up to 100 mL by adding 85 mL, 80 mL,
+      75 mL and 70 mL distilled water to flasks 'A', 'B', 'C'and 'D' respectively.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 8
+    pageText: Drag the sliders to add 85 mL, 80 mL, 75 mL and 70 mL to add distilled
+      water to flask 'A', 'B', 'C' and 'D' respectively.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 9
+    pageText: Now, we will add 10 mL Na2S2O3 solution to each of the four conical
+      flasks.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 10
+    pageText: Drag all the sliders to add 10 mL of 0.05 M Na2S2O3 solution to each
+      flask.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 11
+    pageText: Now, we must add 5 mL of starch solution that will act as an indicator
+      to each flask with a measuring cylinder.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 12
+    pageText: Drag the beaker containing the freshly prepared starch solution near
+      the 50 mL measuring cylinder.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 13
+    pageText: To maintain the solutions at room temperature, the conical flasks must
+      be placed in a water bath.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 14
+    pageText: We will add 3% H2O2 solution to each of the conical flasks to carry
+      out the reaction. But, for now, let us observe what will happen inside the
+      flask if 3% H2O2 solution is added to it.
+    showDialogBox: 1
     showAlternatePanels: 0
     alternatePanels:
     - panel: {fileID: 0}
       stayInUpcomingPages: 0
       enableOnce: 0
       hasBeenEnabledOnce: 0
+  - pageName: Page 15
+    pageText: The reaction will commence only after the addition of 3% hydrogen peroxide
+      solution into the reaction mixture.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 16
+    pageText: First, the iodide ions are oxidised to iodine molecules by hydrogen
+      peroxide in an acidic medium.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 17
+    pageText: Drag the following species to the blanks to form a balanced chemical
+      equation for the oxidation of iodide ions.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 18
+    pageText: The solution contains thiosulphate ions that act as a reducing agent.
+      Drag the iodine molecule towards any of the thiosulphate ions.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 19
+    pageText: Drag the following species to the blanks to form a balanced chemical
+      equation.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 20
+    pageText: 'MCQ
+
+'
+    showDialogBox: 0
+    showAlternatePanels: 1
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 21
+    pageText: Once all the thiosulphate ions react with the iodine (l2) molecules,
+      the concentration of iodine liberated in the reaction of hydrogen peroxide
+      with iodide ions increases rapidly.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 22
+    pageText: As iodine is less soluble in water, it reacts with I- ions present
+      in the solution, to form triiodide ions. This makes a linear triiodide ion
+      complex.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 23
+    pageText: Now, this triiodide ions reacts with the starch (amylose) to form a
+      blue-black coloured complex. This is due to the triiodide ion slipping inside
+      the amylose coil/helical structure.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 24
+    pageText: MCQ
+    showDialogBox: 0
+    showAlternatePanels: 1
+    alternatePanels:
+    - panel: {fileID: 0}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
+  - pageName: Page 25
+    pageText: To commence the reaction in the flasks, add 5 mL of 3% H2O2 and record
+      the time taken for the blue colouration in the solution.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 26
+    pageText: Drag the reagent bottle containing 3% H2O2 near the 50 mL measuring
+      cylinder.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 27
+    pageText: H2O2, a highly reactive chemical, should always be kept in a closed
+      brown bottle to avoid its contact with air or moisture.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 28
+    pageText: Click on the measuring cylinder to transfer 5 mL of 3% H2O2 solution
+      into each conical flask.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 29
+    pageText: We can observe that different solutions take different amounts of time
+      for the completion of the reaction, which is seen by the appearance of blue
+      colour at different times.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 30
+    pageText: Drag the time from the respective stopwatch to the observation table.
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 31
+    pageText: A The time taken by the solution to consume all the thiosulphate ions
+      by iodine is reproducible, and the time for the appearance of blue colour is
+      noted. Hence, this 30mL -125 100 The more the concentration of the iodide ions,
+      the higher is the rate of the reaction.  B  reaction is also known as clock
+      reaction.  265  L75  1
+    showDialogBox: 1
+    showAlternatePanels: 0
+    alternatePanels: []
+  - pageName: Page 32
+    pageText: 'CONCLUSION
+
+'
+    showDialogBox: 0
+    showAlternatePanels: 1
+    alternatePanels: []
   dialogPanel: {fileID: 144539735}
   dialogImage: {fileID: 144539736}
   dialogText: {fileID: 144539737}
