@@ -12,16 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d01fd2d64a9249049aaa77d5c12a82fe, type: 3}
   m_Name: Question 4
   m_EditorClassIdentifier: 
-  questionText: "3. The average oxidation state of sulphur in  tetrathionate ion
-    S<sub>4\t</sub>O<sub>6</sub><sup>2-</sup> is"
+  questionText: '4. Which of the following processes is not advisable while carrying
+    out the experiment?
+
+'
   referenceImage: {fileID: 0}
-  explanationText: "The oxidation state of sulphur in S<sub>4\t</sub>O<sub>6</sub><sup>2-</sup>
-    is:\n4x+(-2x6) =- 2\n4x = -2+ 12 =  10\nOr x = 5/2\nThe oxidation state cannot
-    be a fraction but the average can be a fraction.\nThus, the average oxidation
-    state of sulphur in  S<sub>4\t</sub>O<sub>6</sub><sup>2-</sup> is +5/2."
+  explanationText: 'Taking other chemicals in the same measuring cylinder will change
+    the required concentration as
+
+    some amount of the solution will be adhering
+    to its walls. Hence, wash and dry the measuring cylinder
+
+    every time before
+    use or use a different measuring cylinder for each chemical.'
   options:
-  - ' Stir the mixture after the addition of all the chemicals. '
-  - 'Start the stopwatch immediately after adding H2O2.  '
-  - Use the same measuring cylinders to add the chemicals.
+  - 'Stir the mixture after the addition of all the chemicals.  '
+  - 'Start the stopwatch immediately after adding H2O2. '
+  - 'Use the same measuring cylinders to add the chemicals. '
   - Both A and C
   correctOptionIndex: 2
