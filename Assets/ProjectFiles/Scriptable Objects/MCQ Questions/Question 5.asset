@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01fd2d64a9249049aaa77d5c12a82fe, type: 3}
+  m_Name: Question 5
+  m_EditorClassIdentifier: 
+  questionText: 5. What happens to the iodine that gets liberated in the reaction
+    between hydrogen peroxide and potassium iodide occurs?
+  referenceImage: {fileID: 0}
+  explanationText: 'The liberated iodine undergoes reduction with thiosulphate ions
+    to form iodide and tetrathionate ions.
+
+    The reaction proceeds as follows:
+
+    2(S<sub>2</sub>O<sub>3</sub>)<sup>2-</sup>+
+    I<sub>2</sub>-  2I<sup>-</sup>+ (S<sub>4</sub>O<sub>6</sub>)<sup>2-</sup>'
+  options:
+  - The liberated iodine undergoes oxidation
+  - 'The liberated iodine undergoes reduction '
+  - 'The liberated iodine undergoes displacement reaction '
+  - 'The liberated iodine undergoes combustion '
+  correctOptionIndex: 1

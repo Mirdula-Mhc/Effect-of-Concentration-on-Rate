@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01fd2d64a9249049aaa77d5c12a82fe, type: 3}
+  m_Name: Question 8
+  m_EditorClassIdentifier: 
+  questionText: '8. Why do you think the reaction is called a clock reaction? '
+  referenceImage: {fileID: 0}
+  explanationText: The time taken by iodine to consume all the thiosulphate ions
+    in the solution is reproducible, and the time taken for the appearance of blue
+    colour is noted. Reproducibility is the ability to implement the experimental
+    procedures as exactly as possible to obtain the same results.
+  options:
+  - 'The time taken by the solutions to turn blue depends on the concentration of
+    only iodide ions.  '
+  - 'The time taken by iodine to consume all the thiosulphate ions in the solution
+    is reproducible. '
+  - The time taken by the solutions to turn blue depends on the concentration of
+    only thiosulphate ions.
+  - ' The time taken by the solutions to turn blue depends on the concentration of
+    only hydrogen peroxide.'
+  correctOptionIndex: 1
