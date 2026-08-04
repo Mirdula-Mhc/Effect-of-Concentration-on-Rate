@@ -461,6 +461,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1751467874}
     m_Modifications:
+    - target: {fileID: 238011087247325695, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623381396433319933, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 85
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912338886647442490, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 5901277208804515885, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 80
+      objectReference: {fileID: 0}
     - target: {fileID: 6049641734661190026, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
       propertyPath: m_Name
       value: Page_8
@@ -555,6 +571,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7960636809682357869, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
   m_PrefabInstance: {fileID: 311906197}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &311906199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6049641734661190026, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+  m_PrefabInstance: {fileID: 311906197}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -572,7 +593,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!108 &410087040
 Light:
   m_ObjectHideFlags: 0
@@ -1031,6 +1052,125 @@ Transform:
   m_Children: []
   m_Father: {fileID: 832243455}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &843374993
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 843374994}
+  - component: {fileID: 843374995}
+  m_Layer: 0
+  m_Name: Clickanimmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &843374994
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843374993}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403983597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &843374995
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 843374993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7688ff51c5af46b4d9b692ca5b0526ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickAnimManager
+  entries:
+  - pageIndex: 0
+    clickTarget: {fileID: 0}
+    targetRenderers: []
+    highlightMaterial: {fileID: 0}
+    animation:
+      director: {fileID: 0}
+      animator: {fileID: 0}
+      clip: {fileID: 0}
+    originalMaterials: []
+  raycastCamera: {fileID: 0}
+  clickableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+--- !u!1 &899817624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 899817625}
+  - component: {fileID: 899817626}
+  m_Layer: 0
+  m_Name: Dragdropanimmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &899817625
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899817624}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403983597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &899817626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 899817624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825685210e138e14fb1839c9167c7733, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DragDropAnimManager
+  entries:
+  - pageIndex: 0
+    dragTarget: {fileID: 0}
+    snapPoint: {fileID: 0}
+    snapDistance: 0
+    snapAngle: 0
+    targetRenderers: []
+    highlightMaterial: {fileID: 0}
+    animation:
+      director: {fileID: 0}
+      animator: {fileID: 0}
+      clip: {fileID: 0}
+    originalMaterials: []
+  raycastCamera: {fileID: 0}
+  draggableLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &943497037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1290,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1751467874}
     m_Modifications:
+    - target: {fileID: 238011087247325695, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623381396433319933, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912338886647442490, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6049641734661190026, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
       propertyPath: m_Name
       value: Page_6
@@ -1242,6 +1394,11 @@ PrefabInstance:
 --- !u!224 &1099346182 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7960636809682357869, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+  m_PrefabInstance: {fileID: 1099346181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1099346183 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6049641734661190026, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
   m_PrefabInstance: {fileID: 1099346181}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1147446641
@@ -1374,13 +1531,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147446641}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.013128433, y: -0.9868415, z: 0.109989576, w: 0.11778757}
-  m_LocalPosition: {x: 0.557, y: 1.184, z: 0.716}
+  m_LocalRotation: {x: -0.00000003557975, y: 0.99654484, z: -0.083056726, w: -0.00000021385057}
+  m_LocalPosition: {x: 0.102, y: 1.396, z: 1.342}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 9.529, y: -180, z: 0}
 --- !u!1 &1403983596
 GameObject:
   m_ObjectHideFlags: 0
@@ -1414,6 +1571,9 @@ Transform:
   - {fileID: 164479505}
   - {fileID: 1509291757}
   - {fileID: 218050258}
+  - {fileID: 1923758748}
+  - {fileID: 899817625}
+  - {fileID: 843374994}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1414355825
@@ -1463,6 +1623,26 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2788402170296967307, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000005
+      objectReference: {fileID: 0}
+    - target: {fileID: -2788402170296967307, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.0000001
+      objectReference: {fileID: 0}
+    - target: {fileID: -2788402170296967307, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2788402170296967307, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2788402170296967307, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000221
       objectReference: {fileID: 0}
     - target: {fileID: -2010285242099066937, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
       propertyPath: m_DirtyAABB
@@ -1540,6 +1720,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: -0.000037479396
       objectReference: {fileID: 0}
+    - target: {fileID: 9040643483348506361, guid: bd5f0c3eccb0d0e49a5b2251a993ba1c, type: 3}
+      propertyPath: m_Name
+      value: Liquide
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -1616,10 +1800,14 @@ MonoBehaviour:
     showAlternatePanels: 0
     alternatePanels: []
   - pageName: Page 6
-    pageText: Drag all the sliders to add 10 mL H2SO4 to each flask.
-    showDialogBox: 1
-    showAlternatePanels: 0
-    alternatePanels: []
+    pageText: 
+    showDialogBox: 0
+    showAlternatePanels: 1
+    alternatePanels:
+    - panel: {fileID: 1099346183}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
   - pageName: Page 7
     pageText: Let us now bring the solution up to 100 mL by adding 85 mL, 80 mL,
       75 mL and 70 mL distilled water to flasks 'A', 'B', 'C'and 'D' respectively.
@@ -1627,11 +1815,14 @@ MonoBehaviour:
     showAlternatePanels: 0
     alternatePanels: []
   - pageName: Page 8
-    pageText: Drag the sliders to add 85 mL, 80 mL, 75 mL and 70 mL to add distilled
-      water to flask 'A', 'B', 'C' and 'D' respectively.
-    showDialogBox: 1
-    showAlternatePanels: 0
-    alternatePanels: []
+    pageText: 
+    showDialogBox: 0
+    showAlternatePanels: 1
+    alternatePanels:
+    - panel: {fileID: 311906199}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
   - pageName: Page 9
     pageText: Now, we will add 10 mL Na2S2O3 solution to each of the four conical
       flasks.
@@ -1639,11 +1830,14 @@ MonoBehaviour:
     showAlternatePanels: 0
     alternatePanels: []
   - pageName: Page 10
-    pageText: Drag all the sliders to add 10 mL of 0.05 M Na2S2O3 solution to each
-      flask.
-    showDialogBox: 1
-    showAlternatePanels: 0
-    alternatePanels: []
+    pageText: 
+    showDialogBox: 0
+    showAlternatePanels: 1
+    alternatePanels:
+    - panel: {fileID: 1537638142}
+      stayInUpcomingPages: 0
+      enableOnce: 0
+      hasBeenEnabledOnce: 0
   - pageName: Page 11
     pageText: Now, we must add 5 mL of starch solution that will act as an indicator
       to each flask with a measuring cylinder.
@@ -1855,6 +2049,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1751467874}
     m_Modifications:
+    - target: {fileID: 238011087247325695, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3623381396433319933, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4912338886647442490, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+      propertyPath: targetValue
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6049641734661190026, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
       propertyPath: m_Name
       value: Page_10
@@ -1947,6 +2153,11 @@ PrefabInstance:
 --- !u!224 &1537638141 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7960636809682357869, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
+  m_PrefabInstance: {fileID: 1537638140}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1537638142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6049641734661190026, guid: 10a7afaac8dfa0f4dbe30e9bd88b9471, type: 3}
   m_PrefabInstance: {fileID: 1537638140}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1674447114 stripped
@@ -2097,6 +2308,56 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1923758747
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1923758748}
+  - component: {fileID: 1923758749}
+  m_Layer: 0
+  m_Name: Pageenteranimmanager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1923758748
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923758747}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1403983597}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1923758749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1923758747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfbaa9e1612881c4cb86fda6df40877f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PageEnterAnimManager
+  entries:
+  - pageIndex: 0
+    animation:
+      director: {fileID: 0}
+      animator: {fileID: 0}
+      clip: {fileID: 0}
 --- !u!1001 &7651073552118822580
 PrefabInstance:
   m_ObjectHideFlags: 0
