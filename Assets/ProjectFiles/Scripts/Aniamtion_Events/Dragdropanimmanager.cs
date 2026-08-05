@@ -4,10 +4,17 @@ using System.Collections.Generic;
 
 // -----------------------------------------------------------------
 // One mechanism per page assumed. Page-indexed list of entries -
-// each points at a Collider (the draggable) + a snap-point Transform
-// + the AnimationSource to play on a precise snap. No separate
-// "object" component needed - manager owns all drag state directly,
-// keyed by page (only one entry is ever live at a time).
+// each points at a Collider (the draggable) + a trigger Collider
+// (the snap zone) + the AnimationSource to play on a valid drop.
+// No separate "object" component needed - manager owns all drag
+// state directly, keyed by page (only one entry is ever live at a
+// time).
+//
+// Snap check happens ONCE, at the moment of release: the dragged
+// object's bounds must overlap the snap zone's bounds, and rotation
+// must be within snapAngle. This does NOT require a Rigidbody on
+// the dragged object - Collider.bounds.Intersects() is a pure
+// bounding-box test, no physics simulation involved.
 //
 // Input is routed through Pointer.current (new Input System) rather
 // than OnMouseDown, so this behaves consistently for touch on WebGL
@@ -23,13 +30,11 @@ public class DragDropAnimManager : MonoBehaviour
         [Tooltip("The collider on the object the user drags.")]
         public Collider dragTarget;
 
-        [Tooltip("Where the object must be dropped to snap.")]
-        public Transform snapPoint;
+        [Tooltip("Trigger collider marking the valid drop zone. Must have 'Is Trigger' checked.")]
+        public Collider snapZone;
 
-        [Tooltip("Max distance (world units) from snapPoint to count as a valid drop.")]
-        public float snapDistance = 0.05f;
-        [Tooltip("Max rotation difference (degrees) from snapPoint to count as a valid drop.")]
-        public float snapAngle = 5f;
+        [Tooltip("Max rotation difference (degrees) from snapZone's rotation to count as a valid drop. Leave at 180 to ignore rotation entirely and only check overlap.")]
+        public float snapAngle = 180f;
 
         [Tooltip("Renderers to highlight while this page's object is waiting to be dragged.")]
         public List<Renderer> targetRenderers = new List<Renderer>();
@@ -54,6 +59,9 @@ public class DragDropAnimManager : MonoBehaviour
     private Transform draggedTransform;
     private Vector3 dragPlaneOffset;
     private float dragPlaneHeight;
+
+    private Vector3 dragStartPosition;
+    private Quaternion dragStartRotation;
 
     private void OnEnable()
     {
@@ -85,7 +93,7 @@ public class DragDropAnimManager : MonoBehaviour
         if (finishedPages.Contains(currentPageIndex)) return;
 
         PageEntry entry = FindEntry(currentPageIndex);
-        if (entry == null || entry.dragTarget == null || entry.snapPoint == null) return;
+        if (entry == null || entry.dragTarget == null || entry.snapZone == null) return;
 
         if (raycastCamera == null) raycastCamera = Camera.main;
         if (raycastCamera == null) return;
@@ -115,6 +123,8 @@ public class DragDropAnimManager : MonoBehaviour
             return;
 
         draggedTransform = entry.dragTarget.transform;
+        dragStartPosition = draggedTransform.position;
+        dragStartRotation = draggedTransform.rotation;
         dragPlaneHeight = draggedTransform.position.y;
         dragging = true;
 
@@ -149,16 +159,25 @@ public class DragDropAnimManager : MonoBehaviour
     private void EvaluateDrop(int pageIndex, PageEntry entry)
     {
         Transform obj = entry.dragTarget.transform;
-        float dist = Vector3.Distance(obj.position, entry.snapPoint.position);
-        float angle = Quaternion.Angle(obj.rotation, entry.snapPoint.rotation);
 
-        if (dist <= entry.snapDistance && angle <= entry.snapAngle)
+        bool overlapping = entry.dragTarget.bounds.Intersects(entry.snapZone.bounds);
+        float angle = Quaternion.Angle(obj.rotation, entry.snapZone.transform.rotation);
+
+        Debug.Log($"[DragDrop] Page {pageIndex} release check — overlapping={overlapping}, angle={angle:F2} (max {entry.snapAngle})");
+
+        if (overlapping && angle <= entry.snapAngle)
         {
-            obj.position = entry.snapPoint.position;
-            obj.rotation = entry.snapPoint.rotation;
+            Debug.Log($"[DragDrop] Page {pageIndex} — SNAP PASSED, snapping and triggering animation.");
+            obj.position = entry.snapZone.transform.position;
+            obj.rotation = entry.snapZone.transform.rotation;
             OnSnapped(pageIndex, entry);
         }
-        // else: leave it where released; user can pick it back up and try again
+        else
+        {
+            Debug.Log($"[DragDrop] Page {pageIndex} — snap FAILED, out of tolerance. Returning to start position.");
+            obj.position = dragStartPosition;
+            obj.rotation = dragStartRotation;
+        }
     }
 
     private void OnSnapped(int pageIndex, PageEntry entry)
@@ -169,7 +188,12 @@ public class DragDropAnimManager : MonoBehaviour
 
         if (entry.animation != null && entry.animation.IsValid)
         {
-            StartCoroutine(entry.animation.Play(this, () => PageNavigationController.RequestNavigationUnlock()));
+            Debug.Log($"[DragDrop] Page {pageIndex} — OnSnapped: valid AnimationSource found (director={(entry.animation.director != null ? entry.animation.director.name : "none")}, animator={(entry.animation.animator != null ? entry.animation.animator.name : "none")}). Starting Play().");
+            StartCoroutine(entry.animation.Play(this, () =>
+            {
+                Debug.Log($"[DragDrop] Page {pageIndex} — animation Play() completed, requesting navigation unlock.");
+                PageNavigationController.RequestNavigationUnlock();
+            }));
         }
         else
         {
@@ -196,7 +220,10 @@ public class DragDropAnimManager : MonoBehaviour
         if (entry.targetRenderers == null || entry.targetRenderers.Count == 0 || entry.highlightMaterial == null)
             return;
 
-        if (entry.originalMaterials == null)
+        // Rebuild the cache if it's missing or out of sync with the current
+        // renderer list (e.g. the list was edited in the Inspector after a
+        // previous highlight pass already cached it).
+        if (entry.originalMaterials == null || entry.originalMaterials.Count != entry.targetRenderers.Count)
         {
             entry.originalMaterials = new List<Material>();
             foreach (var r in entry.targetRenderers)
@@ -211,7 +238,8 @@ public class DragDropAnimManager : MonoBehaviour
     {
         if (entry.targetRenderers == null || entry.originalMaterials == null) return;
 
-        for (int i = 0; i < entry.targetRenderers.Count; i++)
+        int count = Mathf.Min(entry.targetRenderers.Count, entry.originalMaterials.Count);
+        for (int i = 0; i < count; i++)
             if (entry.targetRenderers[i] != null && entry.originalMaterials[i] != null)
                 entry.targetRenderers[i].material = entry.originalMaterials[i];
     }

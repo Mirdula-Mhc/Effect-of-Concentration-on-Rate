@@ -35,10 +35,14 @@ public class AnimationSource
         if (director != null)
         {
             bool done = false;
-            void Handler(PlayableDirector d) { done = true; }
+            void Handler(PlayableDirector d) { done = true; Debug.Log($"[AnimationSource] director '{director.gameObject.name}' fired stopped event."); }
             director.stopped += Handler;
 
+            Debug.Log($"[AnimationSource] Playing director '{director.gameObject.name}': state={director.state}, duration={director.duration}, playableAsset={(director.playableAsset != null ? director.playableAsset.name : "NULL")}");
+
             director.Play();
+
+            Debug.Log($"[AnimationSource] After Play() call: state={director.state}, time={director.time}");
 
             while (!done) yield return null;
             director.stopped -= Handler;
