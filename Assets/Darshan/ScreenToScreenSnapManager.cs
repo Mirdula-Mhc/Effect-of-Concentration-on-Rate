@@ -215,7 +215,9 @@ public class ScreenToScreenSnapManager : MonoBehaviour
         if (_correctSnapCount >= _states.Count && _states.Count > 0)
         {
             _allSnappedFired = true;
-            PageNavigationController.RequestNavigationUnlock();
+            // No longer unlocks directly - EquationCompletionChecker below
+            // decides when to actually unlock, once BOTH the drag-drop AND
+            // the coefficient numbers are correct.
         }
     }
 
