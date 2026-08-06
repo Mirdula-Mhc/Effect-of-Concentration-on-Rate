@@ -3,7 +3,22 @@ guid: 72ddef0d46e0ab64bb5b395f88f28753
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Molecule_Set_1_M
+    second: {fileID: 2100000, guid: 1893023aad0483943b728548e77572e5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Powers_M20
+    second: {fileID: 2100000, guid: 28954bedd0c478e40bb4fc2a1c70a781, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Powers_M21
+    second: {fileID: 2100000, guid: d8ace2bdc7888b845be05cc1bb3042d4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -91,7 +106,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 0.01
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0

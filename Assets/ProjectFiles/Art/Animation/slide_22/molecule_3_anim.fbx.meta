@@ -3,7 +3,17 @@ guid: 827a4dd2e39b4c049971e9ccfcdf6683
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Molecule_Set_1_M
+    second: {fileID: 2100000, guid: b09fa7e860d05f449a9d4f5cc13e4c56, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Powers_M21
+    second: {fileID: 2100000, guid: 16d4dc9aaf4014344b2f085ce1f7e45c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -102,7 +102,10 @@ public class ClickAnimManager : MonoBehaviour
         if (entry.targetRenderers == null || entry.targetRenderers.Count == 0 || entry.highlightMaterial == null)
             return;
 
-        if (entry.originalMaterials == null)
+        // Rebuild the cache if it's missing or out of sync with the current
+        // renderer list (e.g. the list was edited in the Inspector after a
+        // previous highlight pass already cached it).
+        if (entry.originalMaterials == null || entry.originalMaterials.Count != entry.targetRenderers.Count)
         {
             entry.originalMaterials = new List<Material>();
             foreach (var r in entry.targetRenderers)
@@ -117,7 +120,8 @@ public class ClickAnimManager : MonoBehaviour
     {
         if (entry.targetRenderers == null || entry.originalMaterials == null) return;
 
-        for (int i = 0; i < entry.targetRenderers.Count; i++)
+        int count = Mathf.Min(entry.targetRenderers.Count, entry.originalMaterials.Count);
+        for (int i = 0; i < count; i++)
             if (entry.targetRenderers[i] != null && entry.originalMaterials[i] != null)
                 entry.targetRenderers[i].material = entry.originalMaterials[i];
     }
