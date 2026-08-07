@@ -58,12 +58,15 @@ public class WorldToWorldSnapManager : MonoBehaviour
         public CanvasGroup canvasGroup;
         public DragHandler handler;
 
-        // Offset (in the dragged item's parent-local space) between the
-        // pointer's local point and the item's localPosition at the moment
-        // the drag started. Keeping this constant for the whole drag is what
-        // makes it track the finger/cursor precisely instead of snapping its
-        // pivot to the pointer.
-        public Vector3 grabOffset;
+        // Delta-tracking fields: instead of recomputing an absolute position
+        // each frame (sensitive to canvas tilt/camera angle distortion), we
+        // track how far the POINTER has moved on screen since the drag
+        // started, then apply that same movement as a world-space
+        // displacement using the camera at a fixed depth. This tracks the
+        // cursor/finger reliably regardless of the canvas's own rotation.
+        public Vector2 dragStartScreenPos;
+        public Vector3 dragStartWorldPos;
+        public float dragDepth;
     }
 
     private readonly Dictionary<RectTransform, DragState> _states = new Dictionary<RectTransform, DragState>();
@@ -164,32 +167,42 @@ public class WorldToWorldSnapManager : MonoBehaviour
         state.canvasGroup.blocksRaycasts = false;
         draggedRect.SetAsLastSibling(); // render above everything while dragging
 
-        // Convert the pointer's current screen position into this item's
-        // parent-local space (World Space, using the canvas's own camera),
-        // then store the offset from that point to the item's current
-        // localPosition. Applying this same offset every frame keeps the
-        // exact grab point glued to the pointer for the rest of the drag.
-        RectTransform parentRect = draggedRect.parent as RectTransform;
-        if (TryGetWorldLocalPoint(parentRect, eventData.position, out Vector3 pointerLocal))
-        {
-            state.grabOffset = draggedRect.localPosition - pointerLocal;
-        }
-        else
-        {
-            state.grabOffset = Vector3.zero;
-        }
+        // Record the pointer's starting screen position, the item's starting
+        // WORLD position, and its distance from the camera (depth). Every
+        // frame, we'll measure how far the pointer has moved in screen space
+        // since this moment, convert that same movement into a world-space
+        // displacement at this fixed depth, and apply it to the item's
+        // starting world position. This tracks the cursor/finger reliably
+        // even if the canvas itself is tilted relative to the camera.
+        state.dragStartScreenPos = eventData.position;
+        state.dragStartWorldPos = draggedRect.position;
+        state.dragDepth = WorldCam != null
+            ? Vector3.Distance(WorldCam.transform.position, draggedRect.position)
+            : 1f;
     }
 
     internal void HandleDrag(RectTransform draggedRect, PointerEventData eventData)
     {
         if (!_states.TryGetValue(draggedRect, out DragState state)) return;
         if (state.isLocked) return;
+        if (WorldCam == null) return;
 
-        RectTransform parentRect = draggedRect.parent as RectTransform;
-        if (TryGetWorldLocalPoint(parentRect, eventData.position, out Vector3 pointerLocal))
-        {
-            draggedRect.localPosition = pointerLocal + state.grabOffset;
-        }
+        // How far has the pointer moved on screen since the drag started?
+        Vector2 currentScreenPos = eventData.position;
+
+        // Convert both the start and current screen positions into world
+        // points at the SAME fixed depth (distance from camera captured at
+        // drag start). The difference between those two world points is the
+        // exact world-space displacement the pointer has made - applying it
+        // to the item's starting world position tracks the cursor/finger
+        // precisely, regardless of the canvas's own tilt or rotation.
+        Vector3 startWorld = WorldCam.ScreenToWorldPoint(
+            new Vector3(state.dragStartScreenPos.x, state.dragStartScreenPos.y, state.dragDepth));
+        Vector3 currentWorld = WorldCam.ScreenToWorldPoint(
+            new Vector3(currentScreenPos.x, currentScreenPos.y, state.dragDepth));
+
+        Vector3 worldDelta = currentWorld - startWorld;
+        draggedRect.position = state.dragStartWorldPos + worldDelta;
     }
 
     internal void HandleEndDrag(RectTransform draggedRect, PointerEventData eventData)
@@ -216,29 +229,6 @@ public class WorldToWorldSnapManager : MonoBehaviour
         {
             SnapBack(state);
         }
-    }
-
-    /// <summary>
-    /// Converts a screen point into a local point inside the given World
-    /// Space RectTransform, using this manager's worldCanvas camera. Uses
-    /// Unity's built-in ScreenPointToWorldPointInRectangle rather than a
-    /// manual plane raycast - a manual raycast can return a wildly wrong,
-    /// far-away distance when the ray is nearly parallel to the canvas
-    /// plane (a tiny numerical error gets massively amplified), which is
-    /// what causes items to "fly away"/repel on drop. This built-in utility
-    /// avoids that failure mode entirely.
-    /// </summary>
-    private bool TryGetWorldLocalPoint(RectTransform targetRect, Vector2 screenPoint, out Vector3 localPoint)
-    {
-        localPoint = Vector3.zero;
-        if (targetRect == null || WorldCam == null) return false;
-
-        if (!RectTransformUtility.ScreenPointToWorldPointInRectangle(
-                targetRect, screenPoint, WorldCam, out Vector3 worldPoint))
-            return false;
-
-        localPoint = targetRect.InverseTransformPoint(worldPoint);
-        return true;
     }
 
     /// <summary>
@@ -319,6 +309,7 @@ public class WorldToWorldSnapManager : MonoBehaviour
         if (_correctSnapCount >= _states.Count && _states.Count > 0)
         {
             _allSnappedFired = true;
+            Debug.Log($"[WorldToWorldSnapManager] All {_states.Count} draggables correctly snapped - unlocking Next page.");
             PageNavigationController.RequestNavigationUnlock();
         }
     }
