@@ -6168,7 +6168,8 @@ MonoBehaviour:
     dragTarget: {fileID: 5903903705290657185}
     snapZone: {fileID: 1607206001}
     snapAngle: 180
-    targetRenderers: []
+    targetRenderers:
+    - {fileID: 2968731314270665137}
     highlightMaterial: {fileID: 2100000, guid: 0d384473d36fdd947a71ee1863bb6390, type: 2}
     animation:
       director: {fileID: 5903903705290657187}
