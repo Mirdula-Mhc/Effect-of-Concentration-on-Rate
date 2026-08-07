@@ -204,6 +204,11 @@ public class DragDropAnimManager : MonoBehaviour
 
     private void SetPageContext(int pageIndex)
     {
+        // Disarm/clear whatever was active on the page we're leaving.
+        PageEntry previousEntry = FindEntry(currentPageIndex);
+        if (previousEntry != null)
+            ClearHighlight(previousEntry);
+
         currentPageIndex = pageIndex;
         dragging = false;
         draggedTransform = null;

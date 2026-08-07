@@ -88,6 +88,11 @@ public class ClickAnimManager : MonoBehaviour
 
     private void SetPageContext(int pageIndex)
     {
+        // Clear whatever was highlighted on the page we're leaving.
+        PageEntry previousEntry = FindEntry(currentPageIndex);
+        if (previousEntry != null)
+            ClearHighlight(previousEntry);
+
         currentPageIndex = pageIndex;
 
         PageEntry entry = FindEntry(pageIndex);
