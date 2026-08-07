@@ -4348,7 +4348,7 @@ MonoBehaviour:
   previousButton: {fileID: 667404826}
   pageNumberText: {fileID: 667404828}
   developerIndexMode: 0
-  testing: 1
+  testing: 0
   requiresInteraction: 0000000100010001000100010000000101000101010001010001000100010000
   currentIndex: 0
 --- !u!4 &448350224
@@ -8896,7 +8896,7 @@ GameObject:
   - component: {fileID: 844125378}
   - component: {fileID: 844125379}
   m_Layer: 0
-  m_Name: WorldSNap
+  m_Name: WorldSnap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
